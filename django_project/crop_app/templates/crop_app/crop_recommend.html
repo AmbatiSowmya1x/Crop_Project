@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'images/bg1.png' %}"); /* Set the path to your image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;  
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 20%;
+            background-color: transparent;  /* Removed white background */
+            box-shadow: none;               /* Removed shadow */
+        }
+
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .back-btn {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        3
+        {% if not recommended_crop %}
+        <form method="post">
+            {% csrf_token %}
+            <label for="nitrogen">Nitrogen Level:</label>
+            <input type="number" step="any" name="nitrogen" required>
+            
+            <label for="phosphorus">Phosphorus Level:</label>
+            <input type="number" step="any" name="phosphorus" required>
+            
+            <label for="potassium">Potassium Level:</label>
+            <input type="number" step="any" name="potassium" required>
+            
+            <label for="ph">pH Level:</label>
+            <input type="number" step="any" name="ph" required>
+            
+            <label for="temperature">Temperature:</label>
+            <input type="number" step="any" name="temperature" required>
+            
+            <label for="humidity">Humidity:</label>
+            <input type="number" step="any" name="humidity" required>
+            
+            <label for="rainfall">Rainfall:</label>
+            <input type="number" step="any" name="rainfall" required>
+            
+            <div class="button-container">
+                <button type="submit" class="submit-btn">Recommend Crop</button>
+                <a href="/" class="back-btn" style="text-decoration: none; padding: 10px 20px; border-radius: 5px;">Back</a>
+            </div>
+        </form>
+        {% endif %}
+    
+
+        {% if recommended_crop %}
+        <div class="output-box">
+            <h2>Recommended Crop:</h2>
+            <h2>{{ recommended_crop }}</h2>
+            <a href="{% url 'crop_recommend' %}" class="back-btn" style="text-decoration: none; margin-top: 40px; padding: 10px 20px; border-radius: 5px;">Try Another</a>
+            
+        {% endif %}
+    </div>
+</body>
+</html>
