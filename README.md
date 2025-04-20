@@ -33,7 +33,7 @@ This project provides a web-based interface for recommending suitable crops and 
 
 6. Run migrations
    ```bash
-    python manage.py makemigrations
+    cd django_project
     python manage.py migrate
 
 8. Start the server
