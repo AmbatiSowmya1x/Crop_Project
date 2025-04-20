@@ -23,24 +23,28 @@ This project provides a web-based interface for recommending suitable crops and 
    cd Crop_Recommendation_Project_repo
 
 2. Create and activate a virtual environment
+   ```bash
     conda create -n test_env python=3.10
     conda activate test_env
 
-3. Install Dependencies
-    pip install -r requirements.txt
+4. Install Dependencies
+    ```bash
+   pip install -r requirements.txt
 
-4. Run migrations
+6. Run migrations
+   ```bash
     python manage.py makemigrations
     python manage.py migrate
 
-5. Start the server
+8. Start the server
+   ```bash
     python manage.py runserver
 
-6. Visit http://127.0.0.1:8000/ in your web browser to access the system.
+10. Visit http://127.0.0.1:8000/ in your web browser to access the system.
 
 
 ## Project Structure
-
+```
 Crop_Recommendation_Project_repo/
 ├── data/                  # Datasets for training and prediction
 ├── django_project/        # Django application code
